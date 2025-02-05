@@ -1,0 +1,89 @@
+:root {
+    --white: hsl(0, 0%, 100%);
+    --blue-300: hsl(231, 77%, 90%);
+    --blue-900: hsl(230, 35%, 7%);
+    --font-ff: "Barlow";
+    font-family: var(--font-ff), system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: normal;
+    font-weight: 400;
+    font-style: normal;
+
+    color-scheme: light dark;
+    color: var(--blue-300);
+    background-color: var(--blue-900);
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:after, *:before {
+    box-sizing: inherit;
+    padding: unset;
+    margin: unset;
+}
+
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100dvh;
+}
+
+a {
+    display: block;
+    color: inherit;
+    text-decoration: inherit;
+    transition: color .25s ease-in-out;
+}
+li {
+    list-style: none;
+}
+img {
+    max-width: 100%;
+}
+
+
+button {
+    background-color: transparent;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+.bellefair-regular {
+    --font-ff: "Bellefair";
+    font-family: var(--font-ff), system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+.bellefair-regular.condensed {
+    letter-spacing: 4px;
+}
+.barlow-regular {
+    --font-ff: "Barlow";
+    font-family: var(--font-ff) system-ui, Avenir, Helvetica, Arial, serif;
+}
+.barlow-regular.condensed {
+    letter-spacing: 2px;
+}
+.fw-500{
+    font-weight: bold;
+}
+.fw-700{
+    font-weight: 700;
+}
+.grey-txt{
+    color: #979797; !important;
+}
