@@ -12,8 +12,7 @@ export default function Destinations() {
 
     function renderDetails(data) {
         const {name, images, distance, travel, description} = data;
-        const imgUrl = new URL(images.webp, import.meta.url).href;
-        console.log(imgUrl, Img);
+
         return (
             <>
                 <article className={'dest-content'}>
