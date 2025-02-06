@@ -10,7 +10,7 @@ export async function DestinationLoader({params}) {
 export default function Destinations() {
     const loaderData = useLoaderData();
     const loadImage = async (imageName) => {
-        const image = await import(`./assets/destination${imageName}.png`);
+        const image = await import(`./assets/destination/${imageName}.png`);
         return image.default;
     };
     const [imageSrc, setImageSrc] = useState(null);
