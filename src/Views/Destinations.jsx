@@ -1,8 +1,6 @@
 import {Await, useLoaderData} from "react-router-dom";
-import {lazy, Suspense} from "react";
+import {Suspense, useEffect, useState} from "react";
 import {getDestination} from "../api.js";
-import MoonWebp from '../assets/destination/image-moon.webp'
-import MoonPng from '../assets/destination/image-moon.png'
 
 
 export async function DestinationLoader({params}) {
@@ -11,9 +9,18 @@ export async function DestinationLoader({params}) {
 
 export default function Destinations() {
     const loaderData = useLoaderData();
+    const loadImage = async (imageName) => {
+        const image = await import(`./assets/destination${imageName}.png`);
+        return image.default;
+    };
+    const [imageSrc, setImageSrc] = useState(null);
 
     function renderDetails(data) {
         const {name, images, distance, travel, description} = data;
+        useEffect(() => {
+            loadImage('image-moon').then(setImageSrc);
+        }, []);
+        console.log(imageSrc)
         return (
             <>
                 <article className={'dest-content'}>
@@ -31,7 +38,7 @@ export default function Destinations() {
                     </div>
                 </article>
                 <figure>
-                    <img src={`.${images?.webp || png}`} alt={`A satellite image of ${name}`}
+                    <img src={`.${imageSrc? imageSrc :''}`} alt={`A satellite image of ${name}`}
                          aria-label={`A satellite image of ${name}`}/>
                 </figure>
             </>);
