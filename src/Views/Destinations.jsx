@@ -1,35 +1,25 @@
 import {Await, useLoaderData} from "react-router-dom";
-import {Suspense} from "react";
+import {Suspense, useState} from "react";
 import {getDestination} from "../api.js";
-import ImagesWrapper from "../Components/ImagesLoader.jsx";
-import MoonWebp from "../assets/destination/image-moon.webp";
-import MarsWebp from "../assets/destination/image-mars.webp";
-import TitanWebp from "../assets/destination/image-titan.webp";
-import EuropaWebp from "../assets/destination/image-europa.webp";
+import imageName from "../utils.js";
 
 export async function DestinationLoader({params}) {
     return {destination: getDestination(params?.id || '')};
 }
 
+const loadImage = async (imageName) => {
+    const image = await import(imageName);
+    console.log(image);
+    return image.default;
+};
+
 export default function Destinations() {
     const loaderData = useLoaderData();
-    const imgUrl = (destinationName) => {
-
-        switch (destinationName.toLowerCase()) {
-            case 'moon':
-                return MoonWebp;
-            case 'mars':
-                return MarsWebp;
-            case 'titan':
-                return TitanWebp;
-            case 'europa':
-                return EuropaWebp;
-        }
-    }
+    const [imageSrc, setImageSrc] = useState(null);
 
     function renderDetails(data) {
-        const {name, distance, travel, description} = data;
-
+        const {name, images, distance, travel, description} = data;
+        loadImage(`./../assets/destination/${imageName(images.webp)}.webp`).then(setImageSrc);
         return (
             <>
                 <article className={'dest-content'}>
@@ -46,8 +36,10 @@ export default function Destinations() {
                         </div>
                     </div>
                 </article>
-                <ImagesWrapper src={imgUrl(name)} alt={`A satellite image of ${name}`}
-                               aria-label={`A satellite image of ${name}`}/>
+                <figure>
+                    {imageSrc && <img src={`${imageSrc}`} alt={`A satellite image of ${name}`}
+                                      aria-label={`A satellite image of ${name}`}/>}
+                </figure>
             </>);
     }
 
