@@ -230,7 +230,7 @@
 }
 
 .main > article > header h1 span.grey-txt {
-    font-size: 1.188rem;
+    font-size: inherit;
     margin-right: 1.263em;
 }
 

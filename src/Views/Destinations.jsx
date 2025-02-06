@@ -7,19 +7,19 @@ export async function DestinationLoader({params}) {
     return {destination: getDestination(params?.id || '')};
 }
 
-const loadImage = async (imageName) => {
-    const image = await import(imageName);
-    console.log(image);
-    return image.default;
-};
 
 export default function Destinations() {
     const loaderData = useLoaderData();
     const [imageSrc, setImageSrc] = useState(null);
 
+    const loadImage = async (imageName) => {
+        const image = await import(`./../assets/destination/${imageName}.webp`);
+        return image.default;
+    };
+
     function renderDetails(data) {
         const {name, images, distance, travel, description} = data;
-        loadImage(`./../assets/destination/${imageName(images.webp)}.webp`).then(setImageSrc);
+        loadImage(imageName(images.webp)).then(setImageSrc);
         return (
             <>
                 <article className={'dest-content'}>
@@ -38,7 +38,7 @@ export default function Destinations() {
                 </article>
                 <figure>
                     <img src={`${imageSrc}`} alt={`A satellite image of ${name}`}
-                         aria-label={`A satellite image of ${name}`}/>
+                                      aria-label={`A satellite image of ${name}`}/>
                 </figure>
             </>);
     }

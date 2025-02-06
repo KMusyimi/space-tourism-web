@@ -34,8 +34,8 @@ export default function CrewView() {
 
         return (data.map((items, idx) => {
             const {bio, images, name, role, id} = items;
-            // imageName(images.webp);
             loadImage(imageName(images.webp)).then(setImageSrc);
+            console.log(imageSrc);
             return (<li key={id} className={`${activeIdx === idx ? 'active fade' : ''}`}
                         style={{display: `${activeIdx !== idx ? "none" : ''}`}}
                         ref={el => slidesRef.current[idx] = el}>

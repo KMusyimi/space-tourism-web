@@ -1,4 +1,4 @@
-import {createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import './App.css'
 import Layout from "./Components/Layout.jsx";
 import Home from "./Views/Home.jsx";
@@ -15,8 +15,8 @@ const router = createBrowserRouter(createRoutesFromElements(<Route path={'/'} el
         <Route path={':id'} element={<Destinations/>} loader={DestinationLoader}/>
     </Route>
     <Route path={'crews'} element={<CrewView/>} loader={crewLoader}/>
-    <Route path={'technology'} element={<TechLayout/>} >
-        <Route index element={<TechnologyView/>} loader={TechLoader} />
+    <Route path={'technology'} element={<TechLayout/>}>
+        <Route index element={<TechnologyView/>} loader={TechLoader}/>
         <Route path={':id'} element={<TechnologyView/>} loader={TechLoader}/>
 
     </Route>
