@@ -37,8 +37,8 @@ export default function Destinations() {
                     </div>
                 </article>
                 <figure>
-                    {imageSrc && <img src={`${imageSrc}`} alt={`A satellite image of ${name}`}
-                                      aria-label={`A satellite image of ${name}`}/>}
+                    <img src={`${imageSrc}`} alt={`A satellite image of ${name}`}
+                         aria-label={`A satellite image of ${name}`}/>
                 </figure>
             </>);
     }

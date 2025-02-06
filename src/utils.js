@@ -133,6 +133,7 @@ async function addDataToDB(arr, ref) {
     }
 
 }
+
 export default function imageName(url){
     return url.substring(url.lastIndexOf("/")+1).split('.')[0];
 }
