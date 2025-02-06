@@ -1,5 +1,4 @@
 import {addDoc, collection} from "firebase/firestore/lite";
-import {getStorage} from "firebase/storage";
 import {db} from "./api.js";
 
 const destination = `{
@@ -134,6 +133,7 @@ async function addDataToDB(arr, ref) {
     }
 
 }
+
 // console.log(storage);
 // Adding data to my database
 // const destinationRef = getObjKey(destination);

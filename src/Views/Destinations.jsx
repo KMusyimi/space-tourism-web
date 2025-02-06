@@ -1,7 +1,9 @@
 import {Await, useLoaderData} from "react-router-dom";
-import {Suspense} from "react";
+import {lazy, Suspense} from "react";
 import {getDestination} from "../api.js";
-import Img from '../assets/destination/image-europa.png'
+import MoonWebp from '../assets/destination/image-moon.webp'
+import MoonPng from '../assets/destination/image-moon.png'
+
 
 export async function DestinationLoader({params}) {
     return {destination: getDestination(params?.id || '')};
@@ -12,7 +14,6 @@ export default function Destinations() {
 
     function renderDetails(data) {
         const {name, images, distance, travel, description} = data;
-
         return (
             <>
                 <article className={'dest-content'}>
@@ -30,7 +31,7 @@ export default function Destinations() {
                     </div>
                 </article>
                 <figure>
-                    <img src={`${images?.webp.split('./')[1] || png}`} alt={`A satellite image of ${name}`}
+                    <img src={`.${images?.webp || png}`} alt={`A satellite image of ${name}`}
                          aria-label={`A satellite image of ${name}`}/>
                 </figure>
             </>);
