@@ -30,7 +30,7 @@ export default function Destinations() {
                     </div>
                 </article>
                 <figure>
-                    <img src={`/src/${images?.webp || png}`} alt={`A satellite image of ${name}`}
+                    <img src={`${images?.webp.split('./assets/')[1] || png}`} alt={`A satellite image of ${name}`}
                          aria-label={`A satellite image of ${name}`}/>
                 </figure>
             </>);
