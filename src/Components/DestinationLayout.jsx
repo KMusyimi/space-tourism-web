@@ -36,8 +36,7 @@ export default function DestinationLayout() {
                 </li>
                 <li><NavLink to={`${titanId}`} className={({isActive}) => isActive ? 'active' : ''}
                              style={({isActive}) => isActive ? activeStyles : {}}>TITAN</NavLink></li>
-            </>
-        )
+            </>)
     }
 
     return (

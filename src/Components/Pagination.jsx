@@ -1,12 +1,22 @@
-export default function Pagination({count, idx, setSlideIdx}) {
-    function Render() {
-        let htmlEl = []
-        for (let i = 0; i < count; i++) {
-            htmlEl.push(<span key={`dot-${i}`} className={`${idx === i + 1 ? 'dot active' : 'dot'}`}
-                              onClick={() => setSlideIdx(i + 1)}></span>)
-        }
-        return htmlEl;
-    }
+import Nav from "./Nav.jsx";
+import {NavLink} from "react-router-dom";
 
-    return (<Render/>)
+export default function Pagination() {
+    const activeStyles = {
+        backgroundColor: 'var(--white)'
+    }
+    return (
+        <Nav>
+            <ul>
+                <li><NavLink to={'.'} className={'dot'} style={({isActive}) => isActive ? activeStyles : {}}
+                             end></NavLink></li>
+                <li><NavLink to={'UOMgox2Dh63XHaj8EWD7'} className={'dot'}
+                             style={({isActive}) => isActive ? activeStyles : {}}></NavLink></li>
+                <li><NavLink to={'YHkk2083YmzlWuI95qc8'} className={'dot'}
+                             style={({isActive}) => isActive ? activeStyles : {}}></NavLink></li>
+                <li><NavLink to={'79hoc5vnjRiKZZBpnEEr'} className={'dot'}
+                             style={({isActive}) => isActive ? activeStyles : {}}></NavLink></li>
+            </ul>
+        </Nav>
+    )
 }

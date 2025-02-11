@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
-import {collection, doc, getDoc, getDocs, getFirestore, limit, orderBy, query} from "firebase/firestore/lite";
+import {collection, doc, getDoc, getDocs, getFirestore} from "firebase/firestore/lite";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -36,10 +36,11 @@ export async function getDestination(id) {
     return {...querySnapshot.data(), id: querySnapshot.id};
 }
 
-export async function getCrews() {
-    const qry = query(crewCollectionRef, orderBy('role'), limit(10));
-    const querySnapshot = await getDocs(qry);
-    return querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
+export async function getCrew(id) {
+    id = id ? id : 'vjybTAXpEfLYNP9ZFfTs';
+    const docRef = doc(crewCollectionRef, id);
+    const querySnapshot = await getDoc(docRef);
+    return {...querySnapshot.data(), id: querySnapshot.id};
 }
 
 export async function getTechnology(id) {

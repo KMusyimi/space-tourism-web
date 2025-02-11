@@ -7,6 +7,7 @@ import DestinationLayout, {DestLayoutLoader} from "./Components/DestinationLayou
 import CrewView, {crewLoader} from "./Views/CrewView.jsx";
 import TechnologyView, {TechLoader} from "./Views/TechnologyView.jsx";
 import TechLayout from "./Components/TechLayout.jsx";
+import CrewLayout from "./Components/CrewLayout.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(<Route path={'/'} element={<Layout/>}>
     <Route index element={<Home/>}/>
@@ -14,7 +15,10 @@ const router = createBrowserRouter(createRoutesFromElements(<Route path={'/'} el
         <Route index element={<Destinations/>} loader={DestinationLoader}/>
         <Route path={':id'} element={<Destinations/>} loader={DestinationLoader}/>
     </Route>
-    <Route path={'crews'} element={<CrewView/>} loader={crewLoader}/>
+    <Route path={'crews'} element={<CrewLayout/>}>
+        <Route index element={<CrewView/>}  loader={crewLoader}/>
+        <Route path={':id'} element={<CrewView/>}  loader={crewLoader}/>
+    </Route>
     <Route path={'technology'} element={<TechLayout/>}>
         <Route index element={<TechnologyView/>} loader={TechLoader}/>
         <Route path={':id'} element={<TechnologyView/>} loader={TechLoader}/>

@@ -46,6 +46,7 @@ li {
 }
 img {
     max-width: 100%;
+    max-height: 100%;
 }
 
 
@@ -81,9 +82,10 @@ button:focus-visible {
 .fw-500{
     font-weight: bold;
 }
-.fw-700{
-    font-weight: 700;
-}
+
 .grey-txt{
     color: #979797; !important;
+}
+.txt-caps{
+    text-transform: uppercase;
 }

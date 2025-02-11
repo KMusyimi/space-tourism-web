@@ -1,71 +1,42 @@
 import {Await, useLoaderData} from "react-router-dom";
-import {Suspense, useEffect, useRef, useState} from "react";
-import Pagination from "../Components/Pagination.jsx";
-import {getCrews} from "../api.js";
+import {Suspense, useState} from "react";
 import imageName from "../utils.js";
+import {getCrew} from "../api.js";
 
-export async function crewLoader() {
-    return {crews: await getCrews()}
+export async function crewLoader({params}) {
+    return {crew: getCrew(params.id)}
 }
 
-const loadImage = async (imageName) => {
-    const image = await import(`./../assets/crew/${imageName}.webp`);
-    console.log(image);
-    return image.default;
-};
 
 export default function CrewView() {
     const loaderData = useLoaderData();
-    const sliderRef = useRef(null);
-    const wrapperRef = useRef(null);
-    const slidesRef = useRef([]);
-    const [slideCount, setSlideCount] = useState(0);
-    const [slideIndex, setSlideIndex] = useState(1);
     const [imageSrc, setImageSrc] = useState(null);
 
-    // useEffect(() => {
-    //     loadImage('image-mark-shuttleworth').then(setImageSrc);
-    //     console.log(imageSrc);
-    // }, []);
+    const loadImages = async (imageName) => {
+        const image = await import(`./../assets/crew/${imageName}.webp`);
+        return image.default;
+    };
 
-
-    function RenderCrews(data) {
-        let activeIdx = slideIndex - 1;
-
-        return (data.map((items, idx) => {
-            const {bio, images, name, role, id} = items;
-            loadImage(imageName(images.webp)).then(setImageSrc);
-            console.log(imageSrc);
-            return (<li key={id} className={`${activeIdx === idx ? 'active fade' : ''}`}
-                        style={{display: `${activeIdx !== idx ? "none" : ''}`}}
-                        ref={el => slidesRef.current[idx] = el}>
-                <article className={'crew-content'}>
-                    <div className={'info-wrapper'}>
-                        <h2>{role}</h2>
-                        <h3>{name}</h3>
-                        <p>{bio}</p>
-                    </div>
-                    <figure className={'img-wrapper'}>
-                        <img src={`${imageSrc? imageSrc : ''}`} alt={`an image of ${name}`}/>
-                    </figure>
-                </article>
-            </li>)
-        }))
+    function RenderCrewInfo(data) {
+        const {bio, images, name, role} = data;
+        loadImages(imageName(images.webp)).then(setImageSrc);
+        return (<>
+            <article className={'crew-content'}>
+                <header className={'bellefair-regular txt-caps'}>
+                    <h1 className={'role grey-txt'}>{role}</h1>
+                    <h2 className={'name'}>{name}</h2>
+                </header>
+                <p className={'bio'}>{bio}</p>
+            </article>
+            <figure className={'img-wrapper'}>
+                <img src={`${imageSrc}`} alt={`an image of ${name}`}/>
+            </figure>
+        </>)
 
     }
 
-    return (<div ref={wrapperRef} id={'slider-wrapper'}>
-        <ul ref={sliderRef}
-            onLoad={() => {
-                slideCount === 0 && setSlideCount(sliderRef.current.children.length);
-            }}
-            style={{width: `calc(100dvw * ${slideCount})`}}>
-            <Suspense fallback={<div>Loading...</div>}>
-                <Await resolve={loaderData?.crews}>
-                    {RenderCrews}
-                </Await>
-            </Suspense>
-        </ul>
-        <Pagination count={slideCount} idx={slideIndex} setSlideIdx={setSlideIndex}/>
-    </div>)
+    return (
+        <Suspense fallback={<div>Loading</div>}>
+            <Await resolve={loaderData?.crew}>{RenderCrewInfo}</Await>
+        </Suspense>)
 }
