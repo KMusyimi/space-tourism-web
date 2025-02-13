@@ -166,7 +166,6 @@ nav:not(.menu-btn + .main-nav) > ul {
 .menu-btn + .main-nav::before {
     content: '';
     z-index: -100;
-    /*inset: 0;*/
 }
 
 .menu-btn + .main-nav::before,
@@ -309,7 +308,7 @@ nav:not(.menu-btn + .main-nav) > ul {
     color: var(--blue-900);
     text-transform: uppercase;
     border-radius: 50%;
-    margin-block: 7.438em;
+    margin: 7.438em auto;
 }
 
 /*destinations*/
