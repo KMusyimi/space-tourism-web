@@ -158,8 +158,8 @@ nav:not(.menu-btn + .main-nav) > ul {
 
 .menu-btn + .main-nav::before,
 .main-nav {
-    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(80px);
+    -webkit-backdrop-filter: blur(80px);
     background: rgba(255, 255, 255, 0.04);
 }
 
