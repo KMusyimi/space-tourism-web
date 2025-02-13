@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Spinner from "./Spinner.jsx";
 import imageName from "../utils.js";
 
@@ -9,16 +9,17 @@ const loadImage = async (imageName, dir, ext) => {
 }
 
 export default function ImageComponent({dir, imageName, alt, ext, ...rest}) {
+    const imgRef = useRef(null);
     const [imageSrc, setImageSrc] = useState(null);
     useEffect(() => {
-        setTimeout(
-            () => loadImage(imageName, dir, ext).then(setImageSrc), 500)
+        setTimeout(() => loadImage(imageName, dir, ext).then(setImageSrc), 500)
 
         return () => {
             setImageSrc(null);
         }
     }, [imageName]);
-    return (imageSrc ? <img src={`${imageSrc}`} alt={alt} {...rest}/> : <Spinner/>)
+    return (imageSrc ? <img ref={imgRef} className={imageSrc ? 'fade' : ''} src={`${imageSrc}`} alt={alt} {...rest}/> :
+        <Spinner/>)
 }
 
 export function PictureComponent({images, dir, alt, ext, ...rest}) {
@@ -40,7 +41,7 @@ export function PictureComponent({images, dir, alt, ext, ...rest}) {
             <picture>
                 <source media={'(min-width: 1024px)'} srcSet={`${portraitSrc}`}/>
                 <source media={'(min-width: 660px)'} srcSet={`${landscapeSrc}`}/>
-                <img src={`${portraitSrc}`} alt={alt} {...rest}/>
+                <img className={portraitSrc || landscapeSrc ? 'fade' : ''} src={`${portraitSrc}`} alt={alt} {...rest}/>
             </picture>)
     }
 

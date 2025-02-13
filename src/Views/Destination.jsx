@@ -32,7 +32,6 @@ export default function Destination() {
                 </article>
                 <figure className={'img-wrapper'}>
                     <ImageComponent
-                        className={'dest-img'}
                         imageName={imageName(images.webp)}
                         dir={'destination'}
                         ext={'webp'}

@@ -247,7 +247,6 @@ nav:not(.menu-btn + .main-nav) > ul {
     text-align: center;
     width: min(100%, 1110px);
     margin: 0 auto;
-
 }
 
 .main > article > div {
@@ -310,7 +309,7 @@ nav:not(.menu-btn + .main-nav) > ul {
     color: var(--blue-900);
     text-transform: uppercase;
     border-radius: 50%;
-    margin-block: 2.511em;
+    margin-block: 7.438em;
 }
 
 /*destinations*/
@@ -627,11 +626,15 @@ nav:not(.menu-btn + .main-nav) > ul {
     }
 
     .main > article.hero-article {
-        margin-block: calc(8em - 80px);
+        padding-block: 8em;
     }
 
     .hero-article section {
         align-self: center;
+    }
+
+    .hero-article a {
+        margin-block: 4em;
     }
 
     .destinations-article .dest-container nav ul li a {
@@ -776,8 +779,7 @@ nav:not(.menu-btn + .main-nav) > ul {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-block-start: 1.5em;
-        margin-block: calc(8em - 80px);
+        padding-block: 0;
     }
 
     .main > article.technology-article {
@@ -936,14 +938,14 @@ nav:not(.menu-btn + .main-nav) > ul {
 }
 
 .fade {
-    animation: fade 600ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation: fade 650ms linear;
 }
 
 @keyframes fade {
     from {
-        opacity: .4
+        opacity: .25;
     }
     to {
-        opacity: 1
+        opacity: 1;
     }
 }

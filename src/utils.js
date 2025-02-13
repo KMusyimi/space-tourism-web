@@ -135,7 +135,6 @@ async function addDataToDB(arr, ref) {
 }
 
 export default function imageName(url){
-    console.log(url)
     return url.substring(url.lastIndexOf("/")+1).split('.')[0];
 }
 // Adding data to my database
