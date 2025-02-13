@@ -166,7 +166,7 @@ nav:not(.menu-btn + .main-nav) > ul {
 .menu-btn + .main-nav::before {
     content: '';
     z-index: -100;
-    inset: 0;
+    /*inset: 0;*/
 }
 
 .menu-btn + .main-nav::before,
