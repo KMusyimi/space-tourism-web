@@ -1,6 +1,7 @@
 import {Outlet, useLocation} from "react-router-dom";
 import Header from "./Header.jsx";
 import {useEffect, useState} from "react";
+import Skeleton from "react-loading-skeleton";
 
 export default function Layout() {
     const location = useLocation();
@@ -21,14 +22,19 @@ export default function Layout() {
                 return;
         }
     }, [path]);
-    return (
-        <>
-            <Header/>
-            <main className={'main'}>
-                <article className={`${path ? path : 'hero'}-article`}>
-                    {path && <header className={'header-main'}>{title}</header>}
-                    <Outlet/>
-                </article>
-            </main>
-        </>)
+    return (<>
+        <Header/>
+        <main className={'main'}>
+            <article className={`${path ? path : 'hero'}-article`}>
+                {path && <header className={'header-main'}>{title ||
+                    <Skeleton baseColor={'hsl(230, 35%, 7%)'} highlightColor={'#979797'} style={{
+                        width: 'min(80%,400px)',
+                        height: '1.65em',
+                        marginBottom: '1em',
+                    }}/>}
+                </header>}
+                <Outlet/>
+            </article>
+        </main>
+    </>)
 }

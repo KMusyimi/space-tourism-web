@@ -7,16 +7,14 @@ export default function Pagination() {
     }
     return (
         <Nav>
-            <ul>
-                <li><NavLink to={'.'} className={'dot'} style={({isActive}) => isActive ? activeStyles : {}}
-                             end></NavLink></li>
-                <li><NavLink to={'UOMgox2Dh63XHaj8EWD7'} className={'dot'}
-                             style={({isActive}) => isActive ? activeStyles : {}}></NavLink></li>
-                <li><NavLink to={'YHkk2083YmzlWuI95qc8'} className={'dot'}
-                             style={({isActive}) => isActive ? activeStyles : {}}></NavLink></li>
-                <li><NavLink to={'79hoc5vnjRiKZZBpnEEr'} className={'dot'}
-                             style={({isActive}) => isActive ? activeStyles : {}}></NavLink></li>
-            </ul>
+            <li><NavLink to={'.'} className={'dot'} style={({isActive}) => isActive ? activeStyles : {}}
+                         end></NavLink></li>
+            <li><NavLink to={'UOMgox2Dh63XHaj8EWD7'} className={'dot'}
+                         style={({isActive}) => isActive ? activeStyles : {}}></NavLink></li>
+            <li><NavLink to={'YHkk2083YmzlWuI95qc8'} className={'dot'}
+                         style={({isActive}) => isActive ? activeStyles : {}}></NavLink></li>
+            <li><NavLink to={'79hoc5vnjRiKZZBpnEEr'} className={'dot'}
+                         style={({isActive}) => isActive ? activeStyles : {}}></NavLink></li>
         </Nav>
     )
 }

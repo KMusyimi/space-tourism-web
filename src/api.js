@@ -22,12 +22,6 @@ const destCollectionRef = collection(db, 'destinations');
 const crewCollectionRef = collection(db, 'crews');
 const techCollectionRef = collection(db, 'technology');
 
-
-export async function getDestinationIDs() {
-    const querySnapshot = await getDocs(destCollectionRef)
-    return querySnapshot.docs.map(doc => ({id: doc.id, name: doc.data().name}));
-}
-
 export async function getDestination(id) {
     const moonId = 'LBMCQGUBtI5P5nVa2ODT';
     id = id ? id : moonId;

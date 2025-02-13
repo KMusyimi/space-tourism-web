@@ -135,9 +135,9 @@ async function addDataToDB(arr, ref) {
 }
 
 export default function imageName(url){
+    console.log(url)
     return url.substring(url.lastIndexOf("/")+1).split('.')[0];
 }
-// console.log(storage);
 // Adding data to my database
 // const destinationRef = getObjKey(destination);
 // const crewsRef = getObjKey(crews);

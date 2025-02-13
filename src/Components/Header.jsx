@@ -16,13 +16,14 @@ export default function Header() {
         window.addEventListener('resize', resizeEvt);
 
         const body = document.querySelector('body');
-        toggled ? body.style.position = 'fixed' : body.style.position = '';
+        toggled && windowWidth < 768 ? body.style.position = 'fixed' : body.style.position = '';
         toggled && body.scrollTo({top: 0, behavior: 'smooth'});
 
         return () => {
             removeEventListener('resize', resizeEvt);
         };
-    }, [toggled]);
+
+    }, [toggled, windowWidth]);
 
     return (<header className={'header'}>
         <Link to={'/'} className={'header-logo'}>
@@ -44,21 +45,19 @@ export default function Header() {
             <span></span>
         </button>}
         <Nav className={`main-nav`}>
-            <ul className={'nav-list'}>
-                <li><NavLink to={'/'} className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
-                    className={`fw-500`}>00</span>Home</NavLink></li>
-                <li><NavLink to={'destinations'}
-                             className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
-                    className={`fw-500`}>01</span>Destination</NavLink>
-                </li>
-                <li><NavLink to={'crews'}
-                             className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
-                    className={`fw-500`}>02</span>Crew</NavLink></li>
-                <li><NavLink to={'technology'}
-                             className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
-                    className={`fw-500`}>03</span>Technology</NavLink>
-                </li>
-            </ul>
+            <li><NavLink to={'/'} className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
+                className={`fw-500`}>00</span>Home</NavLink></li>
+            <li><NavLink to={'destinations'}
+                         className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
+                className={`fw-500`}>01</span>Destination</NavLink>
+            </li>
+            <li><NavLink to={'crews'}
+                         className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
+                className={`fw-500`}>02</span>Crew</NavLink></li>
+            <li><NavLink to={'technology'}
+                         className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
+                className={`fw-500`}>03</span>Technology</NavLink>
+            </li>
         </Nav>
     </header>);
 }
