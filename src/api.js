@@ -27,6 +27,7 @@ export async function getDestination(id) {
     id = id ? id : moonId;
     const docRef = doc(destCollectionRef, id);
     const querySnapshot = await getDoc(docRef);
+
     return {...querySnapshot.data(), id: querySnapshot.id};
 }
 

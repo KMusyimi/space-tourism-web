@@ -20,10 +20,6 @@ body:has(.main > .technology-article) {
     --bgi-url: url('/src/assets/technology/background-technology-mobile.jpg');
 }
 
-nav:not(.menu-btn + .main-nav) > ul {
-    display: flex;
-}
-
 #root {
     display: flex;
     flex-direction: column;
@@ -31,6 +27,54 @@ nav:not(.menu-btn + .main-nav) > ul {
     height: 100%;
     min-width: 100dvw;
 
+}
+
+header.header nav ul > li,
+article.destinations-article .dest-container nav ul li {
+    display: flex;
+}
+
+header.header nav ul > li::after,
+article.destinations-article .dest-container nav ul li::after {
+    display: block;
+    background-color: var(--bgc-color, transparent);
+    content: '';
+    height: 3px;
+    width: 100%;
+    transform: translate3d(var(--translate-X, 0%), 0, 0);
+    scale: var(--scale-X, 0.6) 1;
+    transition: background-color 150ms ease-in-out var(--trs-delay, 0ms), transform 600ms linear,
+    scale 350ms ease-in-out var(--scale-delay, 0ms);
+}
+
+
+header.header nav ul > li:has(> a.nav-link--active),
+article.destinations-article .dest-container nav ul li:has(> a.active) {
+    --bgc-color: var(--white);
+    --scale-X: 1;
+}
+
+header.header .menu-btn + nav.main-nav ul > li:after {
+    height: inherit;
+    width: 3.758px;
+    margin-left: auto;
+    transform: translate3d(0, var(--translate-Y, 0), 0) scaleY(var(--scale-Y, 0));
+}
+
+header.header .menu-btn + nav.main-nav ul > li:has(> a.nav-link--active) {
+    --translate-Y: 0%;
+    --scale-Y: 1;
+}
+
+nav:not(.menu-btn + .main-nav) > ul {
+    display: flex;
+}
+main > article > div:has( > .err-container){
+    display: block;
+}
+
+main > article > div:has( > .err-container) > nav{
+    display: none;
 }
 
 /*Header Styles*/
@@ -144,18 +188,7 @@ nav:not(.menu-btn + .main-nav) > ul {
 }
 
 .main-nav ul li {
-    display: flex;
     margin-bottom: 1.65em;
-}
-
-.main-nav ul li:has(> a.nav-link--active)::after {
-    display: inline-block;
-    content: '';
-    height: inherit;
-    width: 3.758px;
-    background-color: var(--white);
-    justify-self: end;
-    margin-left: auto;
 }
 
 .main-nav ul li a {
@@ -275,31 +308,13 @@ nav:not(.menu-btn + .main-nav) > ul {
 }
 
 .destinations-article .dest-container nav ul li {
-    display: flex;
     flex-direction: column;
     gap: 1em;
-    overflow: hidden;
 }
 
 .destinations-article .dest-container nav ul li a {
     font-size: .875rem;
     height: 100%;
-}
-
-.destinations-article .dest-container nav ul li::after {
-    display: block;
-    background-color: var(--bgc-color, transparent);
-    content: '';
-    height: 5px;
-    width: 100%;
-    transform: translate3d(var(--translate-X, -100%), 0, 0) scaleX(var(--scale-X, 0));
-    transition: background-color 300ms linear, transform 300ms ease-in-out;
-}
-
-.destinations-article .dest-container nav ul li:has(> a.active):after {
-    --bgc-color: var(--white);
-    --scale-X: 1;
-    --translate-X:0%;
 }
 
 .destinations-article .dest-container .dest-content--skeleton {
@@ -449,7 +464,7 @@ nav:not(.menu-btn + .main-nav) > ul {
     color: var(--white);
     height: var(--nav-size);
     width: var(--nav-size);
-    border: 1px solid #979797;
+    border: 2px solid #979797;
     border-radius: 50%;
     transition: color 0.6s ease-in-out, border 0.6s ease-in-out, background-color 0.6s ease-in-out;
 }
@@ -493,7 +508,36 @@ nav:not(.menu-btn + .main-nav) > ul {
     width: inherit;
     height: inherit;
 }
-
+/* error styles*/
+main.main:has(article > div > div.err-container) article >div{
+    padding: 0;
+    min-width: 100%;
+}
+main.main article > div > div.err-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    gap: 1em;
+    padding-block: 5em;
+}
+main.main article  > div > div.err-container h1{
+    margin-bottom: .85em;
+}
+main.main article > div >  div.err-container figure{
+    min-width: 30vmin;
+    min-height: 30vmin;
+    width: 30vmin;
+    height: 30vmin;
+    margin: 0 0 2em 0;
+    padding: 0;
+}
+main.main article > div >  div.err-container figure::after{
+    display: none;
+}
+main.main article > div >  div.err-container img{
+    width: inherit;
+}
 
 @media only screen and (min-width: 768px) {
     body:has(.main > .hero-article) {
@@ -532,7 +576,6 @@ nav:not(.menu-btn + .main-nav) > ul {
     }
 
     .main-nav {
-        position: static;
         width: 100%;
         height: 96px;
         max-width: 640px;
@@ -540,7 +583,6 @@ nav:not(.menu-btn + .main-nav) > ul {
 
     .main-nav ul {
         gap: 2.67em;
-
         align-items: center;
         justify-content: end;
         height: 100%;
@@ -552,21 +594,17 @@ nav:not(.menu-btn + .main-nav) > ul {
     .main-nav ul li {
         flex-direction: column;
         margin: 0;
+        height: 100%;
     }
 
     .main-nav ul li a {
         font-size: .875rem;
-
+        height: inherit;
     }
 
     .main-nav ul li:has(> a.nav-link--active) {
         height: inherit;
         align-items: center;
-    }
-
-    .main-nav ul li:has(> a.nav-link--active)::after {
-        width: 100%;
-        height: 3px;
     }
 
     .main {
@@ -670,6 +708,35 @@ nav:not(.menu-btn + .main-nav) > ul {
     img {
         pointer-events: none;
     }
+
+    header.header nav ul > li:hover,
+    article.destinations-article .dest-container nav ul li:hover {
+        --bgc-color: #979797;
+        --scale-X: 1;
+    }
+
+
+    header.header nav ul > li:has(+ li > a.nav-link--active),
+    header.header nav ul > li:has(> a.nav-link--active) + li {
+        --trs-delay: 600ms;
+        --scale-delay: 125ms;
+    }
+
+    header.header nav ul > li:has(+ li > a.nav-link--active):hover,
+    header.header nav ul > li:has(> a.nav-link--active) + li:hover {
+        --trs-delay: 0ms;
+        --bgc-color: var(--white);
+        --translate-X: 0%;
+    }
+
+    header.header nav ul > li:has(+ li > a.nav-link--active) {
+        --translate-X: 185%;
+    }
+
+    header.header nav ul > li:has(> a.nav-link--active) + li {
+        --translate-X: -185%;
+    }
+
 
     .header {
         padding-block-start: 2.5em;
@@ -790,13 +857,6 @@ nav:not(.menu-btn + .main-nav) > ul {
         justify-self: start;
     }
 
-    .destinations-article .dest-container nav ul li:hover:after {
-        --bgc-color: #979797;
-        --scale-X: 1;
-        --translate-X:0%;
-        
-    }
-
     .destinations-article .dest-container nav ul li:hover a {
         color: var(--white);
     }
@@ -836,6 +896,11 @@ nav:not(.menu-btn + .main-nav) > ul {
 
     .crews-article .crew-container nav ul {
         gap: 2.5em;
+    }
+
+    .crews-article .crew-container nav ul .dot:hover:not(.active) {
+        opacity: 0.5;
+        transition: opacity 200ms ease-in-out;
     }
 
     .crews-article .crew-container {
@@ -896,7 +961,12 @@ nav:not(.menu-btn + .main-nav) > ul {
     }
 
     .technology-article .tech-container nav ul li a {
-        --nav-size: 5em;
+        font-size: 1.225rem;
+        --nav-size: 4.35em;
+    }
+
+    .technology-article .tech-container nav ul li a:hover:not(.active) {
+        border-color: var(--white);
     }
 
     .technology-article .tech-container .tech-content {
@@ -921,6 +991,9 @@ nav:not(.menu-btn + .main-nav) > ul {
 
     .technology-article .tech-container figure img {
         height: inherit;
+    }
+    main.main article > div > div.err-container {
+        padding-block: 2em;
     }
 }
 
