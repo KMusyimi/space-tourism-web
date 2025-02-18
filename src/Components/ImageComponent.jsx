@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import Spinner from "./Spinner.jsx";
 import imageName from "../utils.js";
 
@@ -9,16 +9,14 @@ const loadImage = async (imageName, dir, ext) => {
 }
 
 export default function ImageComponent({dir, imageName, alt, ext, ...rest}) {
-    const imgRef = useRef(null);
     const [imageSrc, setImageSrc] = useState(null);
     useEffect(() => {
-        setTimeout(() => loadImage(imageName, dir, ext).then(setImageSrc), 500)
-
+        setTimeout(() => loadImage(imageName, dir, ext).then(setImageSrc), 250)
         return () => {
             setImageSrc(null);
         }
     }, [imageName]);
-    return (imageSrc ? <img ref={imgRef} className={imageSrc ? 'fade' : ''} src={`${imageSrc}`} alt={alt} {...rest}/> :
+    return (imageSrc ? <img className={imageSrc ? 'fade' : ''} src={`${imageSrc}`} alt={alt} {...rest}/> :
         <Spinner/>)
 }
 
@@ -27,8 +25,8 @@ export function PictureComponent({images, dir, alt, ext, ...rest}) {
     const [landscapeSrc, setLandscapeSrc] = useState(null);
 
     useEffect(() => {
-        setTimeout(() => loadImage(imageName(images?.portrait), dir, ext).then(setPortraitSrc), 500);
-        setTimeout(() => loadImage(imageName(images?.landscape), dir, ext).then(setLandscapeSrc), 500);
+        setTimeout(() => loadImage(imageName(images?.portrait), dir, ext).then(setPortraitSrc), 250);
+        setTimeout(() => loadImage(imageName(images?.landscape), dir, ext).then(setLandscapeSrc), 250);
 
         return () => {
             setPortraitSrc(() => null);

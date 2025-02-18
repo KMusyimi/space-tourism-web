@@ -4,7 +4,6 @@ import spaceSvg from './../assets/shared/space-ship.svg'
 export default function Error() {
     const err = useRouteError();
     // name message stack
-    console.log(err.message);
     return (<div className={'err-container'}>
         <figure>
             <img src={`${spaceSvg}`} alt={`space ship image`}/>

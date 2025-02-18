@@ -36,7 +36,7 @@ body:has(.main > .technology-article) {
     height: 2px;
     width: 100%;
     transform: translate3d(var(--translate-X, 0%), 0, 0);
-    scale: var(--scale-X, 1) 1;
+    scale: var(--scale-X, 0.6) 1;
     transition: background-color 100ms linear var(--trs-delay, 0ms), transform 300ms ease-in-out var(--trf-delay, 0ms),
     scale 200ms linear var(--scale-delay, 0ms);
 }
@@ -1013,15 +1013,18 @@ main.main article > div > div.err-container img {
 }
 
 .fade {
-    animation: fade 650ms linear;
+    animation: fade 350ms linear;
 }
 
 @keyframes fade {
     from {
         opacity: .25;
+        scale: .9 .9;
     }
     to {
         opacity: 1;
+        scale: 1 1;
+
     }
 }
 
