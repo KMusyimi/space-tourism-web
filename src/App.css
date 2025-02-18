@@ -817,7 +817,7 @@ main.main article > div > div.err-container img {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-block: 0;
+        padding-block: 2.5em;
     }
 
     .main > article.technology-article {
