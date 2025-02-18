@@ -29,39 +29,36 @@ body:has(.main > .technology-article) {
 
 }
 
+.nav-item::after {
+    display: block;
+    background-color: var(--bgc-color, transparent);
+    content: '';
+    height: 2px;
+    width: 100%;
+    transform: translate3d(var(--translate-X, 0%), 0, 0);
+    scale: var(--scale-X, 1) 1;
+    transition: background-color 100ms linear var(--trs-delay, 0ms), transform 300ms ease-in-out var(--trf-delay, 0ms),
+    scale 200ms linear var(--scale-delay, 0ms);
+}
+
+.nav-item:has(> a.active) {
+    --bgc-color: var(--white);
+    --scale-X: 1;
+}
 header.header nav ul > li,
 article.destinations-article .dest-container nav ul li {
     display: flex;
 }
 
-header.header nav ul > li::after,
-article.destinations-article .dest-container nav ul li::after {
-    display: block;
-    background-color: var(--bgc-color, transparent);
-    content: '';
-    height: 3px;
-    width: 100%;
-    transform: translate3d(var(--translate-X, 0%), 0, 0);
-    scale: var(--scale-X, 0.6) 1;
-    transition: background-color 150ms ease-in-out var(--trs-delay, 0ms), transform 600ms linear,
-    scale 350ms ease-in-out var(--scale-delay, 0ms);
-}
 
-
-header.header nav ul > li:has(> a.nav-link--active),
-article.destinations-article .dest-container nav ul li:has(> a.active) {
-    --bgc-color: var(--white);
-    --scale-X: 1;
-}
-
-header.header .menu-btn + nav.main-nav ul > li:after {
+header.header .menu-btn + nav.main-nav ul > .nav-item:after {
     height: inherit;
     width: 3.758px;
     margin-left: auto;
     transform: translate3d(0, var(--translate-Y, 0), 0) scaleY(var(--scale-Y, 0));
 }
 
-header.header .menu-btn + nav.main-nav ul > li:has(> a.nav-link--active) {
+header.header .menu-btn + nav.main-nav ul > .nav-item:has(> a.active) {
     --translate-Y: 0%;
     --scale-Y: 1;
 }
@@ -69,13 +66,15 @@ header.header .menu-btn + nav.main-nav ul > li:has(> a.nav-link--active) {
 nav:not(.menu-btn + .main-nav) > ul {
     display: flex;
 }
-main > article > div:has( > .err-container){
+
+main > article > div:has( > .err-container) {
     display: block;
 }
 
-main > article > div:has( > .err-container) > nav{
+main > article > div:has( > .err-container) > nav {
     display: none;
 }
+
 
 /*Header Styles*/
 .header {
@@ -314,7 +313,7 @@ main > article > div:has( > .err-container) > nav{
 
 .destinations-article .dest-container nav ul li a {
     font-size: .875rem;
-    height: 100%;
+    height: inherit;
 }
 
 .destinations-article .dest-container .dest-content--skeleton {
@@ -508,11 +507,13 @@ main > article > div:has( > .err-container) > nav{
     width: inherit;
     height: inherit;
 }
+
 /* error styles*/
-main.main:has(article > div > div.err-container) article >div{
+main.main:has(article > div > div.err-container) article > div {
     padding: 0;
     min-width: 100%;
 }
+
 main.main article > div > div.err-container {
     display: flex;
     flex-direction: column;
@@ -521,10 +522,12 @@ main.main article > div > div.err-container {
     gap: 1em;
     padding-block: 5em;
 }
-main.main article  > div > div.err-container h1{
+
+main.main article > div > div.err-container h1 {
     margin-bottom: .85em;
 }
-main.main article > div >  div.err-container figure{
+
+main.main article > div > div.err-container figure {
     min-width: 30vmin;
     min-height: 30vmin;
     width: 30vmin;
@@ -532,10 +535,12 @@ main.main article > div >  div.err-container figure{
     margin: 0 0 2em 0;
     padding: 0;
 }
-main.main article > div >  div.err-container figure::after{
+
+main.main article > div > div.err-container figure::after {
     display: none;
 }
-main.main article > div >  div.err-container img{
+
+main.main article > div > div.err-container img {
     width: inherit;
 }
 
@@ -709,34 +714,43 @@ main.main article > div >  div.err-container img{
         pointer-events: none;
     }
 
-    header.header nav ul > li:hover,
-    article.destinations-article .dest-container nav ul li:hover {
-        --bgc-color: #979797;
+    .nav-item:has(> a.active) + li,
+    .nav-item:has(+ li > a.active) {
+        --trf-delay: 0ms;
+        --trs-delay: 0ms;
+        --bgc-color: transparent;
+        --scale-X: 0.5;
+    }
+
+    .nav-item:has(+ li > a.active):hover,
+    .nav-item:has(> a.active) + li:hover {
+        --bgc-color: var(--white);
+        --translate-X: 0%;
         --scale-X: 1;
     }
 
 
-    header.header nav ul > li:has(+ li > a.nav-link--active),
-    header.header nav ul > li:has(> a.nav-link--active) + li {
-        --trs-delay: 600ms;
+    .nav-item:hover + li:has(> a.active),
+    .nav-item:has(+ li:hover):has(> a.active) {
+        --trs-delay: 200ms;
+        --bgc-color: transparent;
         --scale-delay: 125ms;
+        --scale-X: 0.5;
     }
 
-    header.header nav ul > li:has(+ li > a.nav-link--active):hover,
-    header.header nav ul > li:has(> a.nav-link--active) + li:hover {
-        --trs-delay: 0ms;
-        --bgc-color: var(--white);
-        --translate-X: 0%;
+    .nav-item:has(+ li:hover):has(> a.active),
+    .nav-item:has(+ li > a.active) {
+        --translate-X: 150%;
     }
 
-    header.header nav ul > li:has(+ li > a.nav-link--active) {
-        --translate-X: 185%;
+    .nav-item:hover + li:has(> a.active),
+    .nav-item:has(> a.active) + li {
+        --translate-X: -150%;
     }
 
-    header.header nav ul > li:has(> a.nav-link--active) + li {
-        --translate-X: -185%;
+    .nav-item:has(> a:not(.active)):hover {
+        --bgc-color: #979797;
     }
-
 
     .header {
         padding-block-start: 2.5em;
@@ -992,6 +1006,7 @@ main.main article > div >  div.err-container img{
     .technology-article .tech-container figure img {
         height: inherit;
     }
+
     main.main article > div > div.err-container {
         padding-block: 2em;
     }

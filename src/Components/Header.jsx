@@ -48,17 +48,17 @@ export default function Header() {
                 </svg>
             </button>}
             <Nav className={`main-nav ${toggled && windowWidth < 768 ? 'open' : ''}`}>
-                <li><NavLink to={'/'} className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
+                <li className={'nav-item'}><NavLink to={'/'} ><span
                     className={`fw-500`}>00</span>Home</NavLink></li>
-                <li><NavLink to={'destinations'}
-                             className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
+                <li className={'nav-item'}><NavLink to={'destinations'}
+                             ><span
                     className={`fw-500`}>01</span>Destination</NavLink>
                 </li>
-                <li><NavLink to={'crews'}
-                             className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
+                <li className={'nav-item'}><NavLink to={'crews'}
+                             ><span
                     className={`fw-500`}>02</span>Crew</NavLink></li>
-                <li><NavLink to={'technology'}
-                             className={({isActive}) => isActive ? 'nav-link--active' : 'nav-link'}><span
+                <li className={'nav-item'}><NavLink to={'technology'}
+                             ><span
                     className={`fw-500`}>03</span>Technology</NavLink>
                 </li>
             </Nav>

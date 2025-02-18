@@ -11,6 +11,7 @@ import Technology, {TechLoader} from "./Views/Technology.jsx";
 import TechLayout from "./Components/TechLayout.jsx";
 import CrewLayout from "./Components/CrewLayout.jsx";
 import Error from "./Components/Error.jsx";
+import NotFound from "./Views/404.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(<Route path={'/'} element={<Layout/>}>
     <Route index element={<Home/>}/>
@@ -26,6 +27,7 @@ const router = createBrowserRouter(createRoutesFromElements(<Route path={'/'} el
         <Route index element={<Technology/>} loader={TechLoader} errorElement={<Error/>}/>
         <Route path={':id'} element={<Technology/>} loader={TechLoader} errorElement={<Error/>}/>
     </Route>
+    <Route path={'*'} element={<NotFound />}/>
 </Route>))
 
 function App() {

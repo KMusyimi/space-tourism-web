@@ -10,16 +10,16 @@ export default function DestinationLayout() {
     return (
         <div className={'dest-container'}>
             <Nav className={'dest-nav'}>
-                <li>
+                <li className={'nav-item'}>
                     <NavLink to={'.'}
                              style={({isActive}) => isActive ? activeStyles : {}} end>MOON
                     </NavLink></li>
-                <li><NavLink to={'WM4Eijbt3mwKz7haESiS'}
+                <li className={'nav-item'}><NavLink to={'WM4Eijbt3mwKz7haESiS'}
                              style={({isActive}) => isActive ? activeStyles : {}}>MARS</NavLink></li>
-                <li><NavLink to={'PRiG9D6Cd2MjF86ajjE9'}
+                <li className={'nav-item'}><NavLink to={'PRiG9D6Cd2MjF86ajjE9'}
                              style={({isActive}) => isActive ? activeStyles : {}}>EUROPA</NavLink>
                 </li>
-                <li><NavLink to={'uZFGScdc04k6YfoKCXRW'}
+                <li className={'nav-item'}><NavLink to={'uZFGScdc04k6YfoKCXRW'}
                              style={({isActive}) => isActive ? activeStyles : {}}>TITAN</NavLink></li>
             </Nav>
             <Outlet/>
