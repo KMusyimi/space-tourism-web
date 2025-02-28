@@ -134,6 +134,18 @@ async function addDataToDB(arr, ref) {
 
 }
 
+export function throttleEvt(func, delay) {
+    let resizeTimer = null;
+    return (...args) => {
+        if (!resizeTimer) {
+            func(...args);
+            resizeTimer = setTimeout(() => {
+                resizeTimer = null;
+            }, delay);
+        }
+    }
+}
+
 export default function imageName(url){
     return url.substring(url.lastIndexOf("/")+1).split('.')[0];
 }

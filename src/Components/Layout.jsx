@@ -11,13 +11,13 @@ export default function Layout() {
         switch (path) {
             case 'destinations':
                 setTitle(<h1><span className={'grey-txt fw-500'}>01</span>PICK YOUR DESTINATION</h1>);
-                return;
+                break;
             case 'crews':
                 setTitle(<h1><span className={'grey-txt fw-500'}>02</span>MEET YOUR CREW</h1>)
-                return;
+                break;
             case 'technology':
                 setTitle(<h1><span className={'grey-txt fw-500'}>03</span>SPACE LAUNCH 101</h1>)
-                return;
+                break;
             default:
                 return;
         }

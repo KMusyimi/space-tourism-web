@@ -2,6 +2,7 @@ import MainLogo from '../assets/shared/space-logo.svg'
 import {Link, NavLink} from "react-router-dom";
 import {useEffect, useState} from "react";
 import Nav from "./Nav.jsx";
+import {throttleEvt} from "../utils.js";
 
 export default function Header() {
     const [toggled, setToggled] = useState(false);
@@ -15,13 +16,14 @@ export default function Header() {
             setWindowWidth(window.innerWidth);
         }
 
-        window.addEventListener('resize', resizeEvt);
+        const throttledResizeEvt = throttleEvt(resizeEvt, 1000);
+        window.addEventListener('resize', throttledResizeEvt);
 
         toggled && windowWidth < 768 ? body.style.position = 'fixed' : body.style.position = '';
         toggled && body.scrollTo({top: 0, behavior: 'smooth'});
 
         return () => {
-            removeEventListener('resize', resizeEvt);
+            removeEventListener('resize', throttledResizeEvt);
         };
     }, [toggled, windowWidth]);
 
@@ -48,17 +50,17 @@ export default function Header() {
                 </svg>
             </button>}
             <Nav className={`main-nav ${toggled && windowWidth < 768 ? 'open' : ''}`}>
-                <li className={'nav-item'}><NavLink to={'/'} ><span
+                <li className={'nav-item'}><NavLink to={'/'}><span
                     className={`fw-500`}>00</span>Home</NavLink></li>
                 <li className={'nav-item'}><NavLink to={'destinations'}
-                             ><span
+                ><span
                     className={`fw-500`}>01</span>Destination</NavLink>
                 </li>
                 <li className={'nav-item'}><NavLink to={'crews'}
-                             ><span
+                ><span
                     className={`fw-500`}>02</span>Crew</NavLink></li>
                 <li className={'nav-item'}><NavLink to={'technology'}
-                             ><span
+                ><span
                     className={`fw-500`}>03</span>Technology</NavLink>
                 </li>
             </Nav>
